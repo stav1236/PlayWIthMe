@@ -1,10 +1,11 @@
 import NxWelcome from './nx-welcome';
-
+import { Button } from '@play-with-me/ui';
 import { Route, Routes, Link } from 'react-router-dom';
 
 export function App() {
   return (
     <div>
+      <Button></Button>
       <NxWelcome title="play-with-me-client" />
 
       {/* START: routes */}
