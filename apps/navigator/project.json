@@ -1,0 +1,57 @@
+{
+  "name": "navigator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/navigator/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/navigator",
+        "main": "apps/navigator/src/main.ts",
+        "tsConfig": "apps/navigator/tsconfig.app.json",
+        "assets": ["apps/navigator/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/navigator/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "navigator:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "navigator:build:development"
+        },
+        "production": {
+          "buildTarget": "navigator:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/navigator/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/navigator/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

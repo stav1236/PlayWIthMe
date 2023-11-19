@@ -1,0 +1,57 @@
+{
+  "name": "play-with-me-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/play-with-me-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/play-with-me-backend",
+        "main": "apps/play-with-me-backend/src/main.ts",
+        "tsConfig": "apps/play-with-me-backend/tsconfig.app.json",
+        "assets": ["apps/play-with-me-backend/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/play-with-me-backend/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "play-with-me-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "play-with-me-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "play-with-me-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/play-with-me-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/play-with-me-backend/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
