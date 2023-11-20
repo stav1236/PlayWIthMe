@@ -1,25 +1,14 @@
-import { Button } from '@mui/material';
+import { RTL, useDarkMode } from '@play-with-me/ui';
 import { ThemeProvider } from '@mui/material/styles';
-import { RTL } from '@play-with-me/ui';
-import { useMemo } from 'react';
-import { useDarkMode, getTheme } from '@play-with-me/ui';
+import Header from './components/AppHeader/AppHeader';
 
 const App = () => {
-  const { darkMode, toggleDarkMode } = useDarkMode();
-
-  const theme = useMemo(() => {
-    const theme = getTheme(darkMode);
-    document.documentElement.style.backgroundColor =
-      theme.palette.background.default;
-    return theme;
-  }, [darkMode]);
+  const { theme } = useDarkMode();
 
   return (
     <RTL>
       <ThemeProvider theme={theme}>
-        <Button variant="contained" onClick={toggleDarkMode}>
-          {darkMode ? 'Dark Mode' : 'Light Mode'}
-        </Button>
+        <Header />
       </ThemeProvider>
     </RTL>
   );
