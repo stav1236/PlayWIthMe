@@ -1,30 +1,14 @@
 // Header.tsx
 import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Drawer,
-  List,
-  ListItemText,
-  Button,
-  ListItemButton,
-  ListItemIcon,
-} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useDarkMode } from '@play-with-me/ui';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import HomeIcon from '@mui/icons-material/Home';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 
-interface AppHeaderProps {
-  onDrawerOptionClick?: (option: string) => void;
-}
+import AppDrawer from './AppDrawer/AppDrawer';
 
-const AppHeader: React.FC<AppHeaderProps> = ({ onDrawerOptionClick }) => {
-  const { toggleDarkMode } = useDarkMode();
+interface AppHeaderProps {}
+
+const AppHeader: React.FC<AppHeaderProps> = (props) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -53,38 +37,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onDrawerOptionClick }) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="right"
-        sx={{ '& .MuiDrawer-paper': { left: 0, right: 'auto' } }}
-        open={isDrawerOpen}
-        onClose={handleDrawerClose}
-      >
-        <div style={{ width: '500px' }}>
-          <Button onClick={toggleDarkMode} variant="contained">
-            darkmode
-          </Button>
-        </div>
-        <List>
-          <ListItemButton>
-            <ListItemIcon sx={{ marginRight: (theme) => theme.spacing(-2) }}>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="דף הבית" />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon sx={{ marginRight: (theme) => theme.spacing(-2) }}>
-              <SportsSoccerIcon />
-            </ListItemIcon>
-            <ListItemText primary="מגרשים" />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon sx={{ marginRight: (theme) => theme.spacing(-2) }}>
-              <EmojiEventsIcon />
-            </ListItemIcon>
-            <ListItemText primary="שחקנים מובילים" />
-          </ListItemButton>
-        </List>
-      </Drawer>
+      <AppDrawer open={isDrawerOpen} onClose={handleDrawerClose} />
     </>
   );
 };
