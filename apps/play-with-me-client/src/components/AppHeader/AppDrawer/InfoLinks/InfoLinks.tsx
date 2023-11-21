@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { useDarkMode } from '@play-with-me/ui';
+import React from 'react';
 
 interface INFO_LINKS {
   text: string;
@@ -32,7 +33,7 @@ const InfoLinks = () => {
     >
       {INFO_LINKS.map((item, index) => {
         return (
-          <>
+          <React.Fragment key={item.text}>
             <Typography
               {...infoLinksElmProps}
               sx={{
@@ -47,7 +48,7 @@ const InfoLinks = () => {
             {index + 1 !== INFO_LINKS.length && (
               <Typography {...infoLinksElmProps}>|</Typography>
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </div>

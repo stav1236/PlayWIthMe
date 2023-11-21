@@ -24,7 +24,7 @@ const PagesLinks = () => {
     <div style={{ height: '58%' }}>
       <List>
         {PAGES_LINKS.map((navlink) => (
-          <ListItemButton>
+          <ListItemButton key={navlink.text}>
             <ListItemIcon
               children={navlink.icon}
               sx={{ marginRight: (theme) => theme.spacing(-2) }}
