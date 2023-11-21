@@ -49,6 +49,11 @@ const getTheme = (isDarkMode: boolean) => {
         secondary: isDarkMode ? '#B0B0B0' : '#666666',
       },
     },
+    typography: {
+      subtitle1: {
+        color: '#808080',
+      },
+    },
   });
 };
 
